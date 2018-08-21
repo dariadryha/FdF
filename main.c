@@ -1,82 +1,55 @@
 #include "fdf.h"
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
 
-int sign(int x)
+void	ft_error(char *str)
 {
-	if (x < 0)
-		return (-1);
-	if (x > 0)
-		return (1);
-	return (0);
+	ft_printf("%e%s\n", str);
+	exit(1);
 }
 
-static void draw(t_data data)
+void	ft_parse_color(t_data *data, char *str)
 {
-	int x1 = -60;
-	int y1 = -100;
-	int x = 0;
-	int y = 0;
-	int dx;
-	int dy;
-	int s1;
-	int s2;
-	int flg;
-	int t;
-	int temp;
-	int x_;
-	int y_;
+	char **arr;
 
-	dx = x - x1;
-	dy = y - y1;
-	s1 = sign(dx);
-	s2 = sign(dy);
-	dx = abs(dx);
-	dy = abs(dy);
-	printf("%d %d\n", dx, dy);
-	if (dy > dx)
+	ft_strsplit(str, ',');
+}
+
+void	ft_parse_str(t_data *data, char *str)
+{
+	char **arr;
+	int k;
+
+	k = 0;
+	arr = ft_strsplit(str, ' ');
+	while (arr[k])
 	{
-		temp = dx;
-		dx = dy;
-		dy = temp;
-		flg = 1;
-	}
-	else
-		flg = 0;
-	t = 2 * dy - dx;
-	int i = 1;
-	x_ = x1;
-	y_ = y1;
-	while (i < dx)
-	{
-		mlx_pixel_put(data.mlx_ptr, data.win, x_ + 200, y_ + 200, 0x00FFFF);
-		while (t >= 0)
-		{
-			 if (flg)
-			 	x_ += s1;
-			 else
-			 	y_ += s2;
-			t = t - 2 * dx;
-		}
-		if (flg)
-			y_ += s2;
-		else
-			x_ += s1;
-		t = t + 2 * dy;
-		i++;
+		ft_parse_color(data, arr[k]);
+		k++;
 	}
 }
 
-int main(void)
+void	ft_parse_arguments(t_data *data, char **argv)
+{
+	int fd;
+	char *line;
+
+	line = NULL;
+	if ((fd = open(argv[0], O_RDONLY)) == -1)
+		ft_error("Can't read source file!");
+	while (get_next_line(fd, &line) > 0)
+		ft_parse_str(data, line);
+}
+
+int main(int argc, char **argv)
 {
 	t_data data;
 
-	if (!(data.mlx_ptr = mlx_init()))
-		printf("Fails to set up the connection!\n");
-	data.win = mlx_new_window (data.mlx_ptr, 1000, 1000, "kuku");
-	//mlx_pixel_put(data.mlx_ptr, data.win, 10, 10, 0x00FFFF);
-	draw(data);
-	mlx_loop(data.mlx_ptr);
+	if (argc != 2)
+		ft_error("Usage : ./fdf <filename>");
+	// if (!(data.mlx_ptr = mlx_init()))
+	// 	ft_error("Fails to set up the connection!");
+	ft_bzero(&data, sizeof(t_data));
+	//ft_parse_arguments(&data, &argv[1]);
+	//data.win = mlx_new_window (data.mlx_ptr, SIZE_X, SIZE_Y, "FdF by ddryha.");
+	//mlx_loop(data.mlx_ptr);
 	return (0);
 }
