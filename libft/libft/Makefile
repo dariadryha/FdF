@@ -23,7 +23,7 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o \
         ft_strsub.o ft_strtrim.o ft_tolower.o ft_toupper.o ft_lstnew.o ft_lstdelone.o \
         ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o ft_numword.o ft_numchar.o \
         ft_strrev.o ft_mem_mas_str.o ft_del_mas_str.o ft_mem_mas_num.o ft_del_mas_num.o \
-        get_next_line.o ft_lstlen.o ft_str_digit.o
+        get_next_line.o ft_lstlen.o ft_str_digit.o ft_lstadd_back.o
         
 all: $(addprefix ../obj/,$(OBJ))
 
