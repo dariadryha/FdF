@@ -16,7 +16,7 @@ int		ft_numword(const char *str, char c)
 {
 	int n;
 
-	n = 1;
+	n = 0;
 	if (!str)
 		return (0);
 	while (*str != '\0')

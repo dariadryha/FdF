@@ -24,7 +24,9 @@ static	char	**ft_put(char **temp, char const *s, char c)
 		temp[x] = (char *)malloc(sizeof(char) * ft_strlen(s));
 		if (!temp[x])
 			return (NULL);
-		if (*s != c)
+		while (*s == c)
+			s++;
+		if (*s)
 		{
 			while (*s != c && *s != '\0')
 				temp[x][t++] = *s++;

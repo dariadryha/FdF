@@ -2,7 +2,10 @@ NAME = fdf
 CFLAGS = -Wall -Werror -Wextra
 VFLAGS = -lmlx -framework OpenGL -framework AppKit
 CC = gcc
-SRCS = main.c ft_parse_arguments.c extra.c draw_maps.c
+SRCS = 	$(addprefix srcs/, main.c read_data.c extra1.c extra2.c extra3.c draw_map.c \
+	matrix_operations.c vector_operations.c init_matrix.c \
+	matrix_rotation.c make_gradient.c bresenhams_line.c draw_lines.c\
+	matrix_transformation.c)
 OBJ = $(SRCS:.c=.o)
 HEAD = fdf.h
 HEAD_DIR = minilibx_macos

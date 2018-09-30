@@ -1,9 +1,9 @@
-#include "fdf.h"
+#include "../fdf.h"
 
-void	ft_error(char *str)
+void		del_content(void *content, size_t size)
 {
-	ft_printf("%e%s\n", str);
-	exit(1);
+	free(content);
+	size = 0;
 }
 
 static	int	ft_check_value(char c, int base)
@@ -37,7 +37,7 @@ static	int	ft_count_power(char *str, int base)
 	return (power);
 }
 
-int		ft_atoi_base(char *str, int base)
+int			ft_atoi_base(char *str, int base)
 {
 	int		res;
 	int		power;
