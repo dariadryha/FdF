@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_operations.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:30:27 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:30:29 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
 float	**matrix_multiplication(t_matrix m1, t_matrix m2)
 {
-	float **result;
-	int i;
-	int j;
-	int k;
+	float	**result;
+	int		i;
+	int		j;
+	int		k;
 
 	i = 0;
 	j = 0;

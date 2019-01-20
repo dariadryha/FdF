@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bresenhams_line.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:28:57 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:29:00 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
+
+#define CR_N(x) data->color[x]
 
 static	int		sign(int x)
 {
@@ -28,8 +42,10 @@ static	void	init_bres(t_bres *br, t_data *data, int index1, int index2)
 	}
 	br->error = 2 * br->dy - br->dx;
 	br->color = !data->gradient ? data->color[index1][0] : data->gradient;
-	if (data->color[index1][0] != data->color[index2][0] && br->dx && !data->gradient)
-		br->step = get_rgb_step(data->color[index1][0], data->color[index2][0], br->dx);
+	if (data->color[index1][0] != data->color[index2][0] &&
+		br->dx && !data->gradient)
+		br->step = get_rgb_step(data->color[index1][0],
+			data->color[index2][0], br->dx);
 }
 
 void			draw_line(t_data *data, int index1, int index2)
@@ -56,7 +72,7 @@ void			draw_line(t_data *data, int index1, int index2)
 		else
 			br.x += br.s1;
 		br.error = br.error + 2 * br.dy;
-		if (data->color[index1][0] != data->color[index2][0] && br.dx && !data->gradient)
+		if (CR_N(index1)[0] != CR_N(index2)[0] && br.dx && !data->gradient)
 			br.color = make_gradient(br.color, br.step);
 	}
 }

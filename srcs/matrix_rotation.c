@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_rotation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:30:35 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:30:38 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
-static	t_matrix	matrix_rotation_x(t_matrix *matrix, int	value)
+static	t_matrix	matrix_rotation_x(t_matrix *matrix, int value)
 {
 	matrix->values[1][1] = cos(RAD(value));
 	matrix->values[1][2] = sin(RAD(value));
@@ -9,7 +21,7 @@ static	t_matrix	matrix_rotation_x(t_matrix *matrix, int	value)
 	return (*matrix);
 }
 
-static	t_matrix	matrix_rotation_y(t_matrix *matrix, int	value)
+static	t_matrix	matrix_rotation_y(t_matrix *matrix, int value)
 {
 	matrix->values[0][0] = cos(RAD(value));
 	matrix->values[0][2] = -sin(RAD(value));
@@ -18,7 +30,7 @@ static	t_matrix	matrix_rotation_y(t_matrix *matrix, int	value)
 	return (*matrix);
 }
 
-static	t_matrix	matrix_rotation_z(t_matrix *matrix, int	value)
+static	t_matrix	matrix_rotation_z(t_matrix *matrix, int value)
 {
 	matrix->values[0][0] = cos(RAD(value));
 	matrix->values[0][1] = sin(RAD(value));
@@ -27,7 +39,7 @@ static	t_matrix	matrix_rotation_z(t_matrix *matrix, int	value)
 	return (*matrix);
 }
 
-static	void	init_matrix_rotation(t_data *data, int key)
+static	void		init_matrix_rotation(t_data *data, int key)
 {
 	t_matrix mod;
 	t_matrix temp;
@@ -49,7 +61,7 @@ static	void	init_matrix_rotation(t_data *data, int key)
 	data->matrix_rotation.values = temp.values;
 }
 
-void			rotate(t_data *data, int key)
+void				rotate(t_data *data, int key)
 {
 	init_matrix_rotation(data, key);
 	to_world(data);

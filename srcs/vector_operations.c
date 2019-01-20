@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_operations.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:30:58 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:31:00 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
-t_vectr matrix_subtraction(t_vectr v1, t_vectr v2)
+t_vectr	matrix_subtraction(t_vectr v1, t_vectr v2)
 {
 	t_vectr result;
 
@@ -8,7 +20,7 @@ t_vectr matrix_subtraction(t_vectr v1, t_vectr v2)
 	result.y = v1.y - v2.y;
 	result.z = v1.z - v2.z;
 	result.w = 1;
-	return(result);
+	return (result);
 }
 
 t_vectr	normilize_vector(t_vectr v)
@@ -19,15 +31,15 @@ t_vectr	normilize_vector(t_vectr v)
 	v.x /= length;
 	v.y /= length;
 	v.z /= length;
-	return(v);
+	return (v);
 }
 
-t_vectr cross(t_vectr v1, t_vectr v2)
+t_vectr	cross(t_vectr v1, t_vectr v2)
 {
 	t_vectr result;
 
 	result.x = v1.y * v2.z - v1.z * v2.y;
 	result.y = v1.z * v2.x - v1.x * v2.z;
 	result.z = v1.x * v2.y - v1.y * v2.x;
-	return(result);
+	return (result);
 }

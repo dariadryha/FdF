@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_transformation.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:30:44 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:30:45 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
 static	void	change_z(t_data *data, int value)
@@ -41,7 +53,8 @@ void			to_world(t_data *data)
 	t_matrix temp;
 
 	init_matrix_model(data);
-	temp.values = matrix_multiplication(data->matrix_model, data->matrix_rotation);
+	temp.values = matrix_multiplication(data->matrix_model,
+		data->matrix_rotation);
 	free_matrix(data->matrix_model);
 	data->matrix_model.values = temp.values;
 	data->matrix_model.values[3][0] += data->matrix_translation.values[3][0];

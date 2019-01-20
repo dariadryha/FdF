@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extra3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:29:43 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:29:49 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
 void	reset_matrix(t_matrix *matrix)
@@ -26,6 +38,7 @@ void	reset_cord(t_data *data)
 	reset_matrix(&data->matrix_translation);
 	unit_matrix(&data->matrix_translation);
 	init_matrix_model(data);
+	data->gradient = 0;
 }
 
 void	ft_error(char *str)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extra1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:29:31 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:29:33 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
 void		del_content(void *content, size_t size)
@@ -20,7 +32,6 @@ static	int	ft_check_value(char c, int base)
 		return (c);
 	else
 		return (-1);
-
 }
 
 static	int	ft_count_power(char *str, int base)

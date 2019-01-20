@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_gradient.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:30:15 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:30:17 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
 t_color	get_rgb(int color)
@@ -36,8 +48,8 @@ t_color	get_rgb_step(int color1, int color2, int length)
 
 int		make_gradient(int color, t_color step)
 {
-	t_color temp;
-	int 	result;
+	t_color	temp;
+	int		result;
 
 	temp = get_rgb(color);
 	result = temp.r + step.r;
@@ -45,7 +57,6 @@ int		make_gradient(int color, t_color step)
 	result = result << 8 | (temp.b + step.b);
 	return (result);
 }
-
 
 void	change_color(t_data *data, int key)
 {

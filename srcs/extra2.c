@@ -1,4 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extra2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:29:36 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:29:38 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
+
+#define TRANS data->matrix_translation
+#define REFL data->matrix_reflection
 
 static	void	set_rows_of_matrix(t_data *data)
 {
@@ -20,9 +35,9 @@ static	void	set_rows_of_matrix(t_data *data)
 void			create_transformation_matrix(t_data *data)
 {
 	set_rows_of_matrix(data);
-	data->matrix_translation.values = create_matrix(data->matrix_translation.rows);
+	TRANS.values = create_matrix(TRANS.rows);
 	data->matrix_rotation.values = create_matrix(data->matrix_rotation.rows);
-	data->matrix_reflection.values = create_matrix(data->matrix_reflection.rows);
+	REFL.values = create_matrix(REFL.rows);
 	data->matrix_model.values = create_matrix(data->matrix_model.rows);
 	data->temp.values = create_matrix(data->cord.rows);
 	data->rotation_x.values = create_matrix(data->rotation_x.rows);
@@ -39,7 +54,7 @@ void			create_transformation_matrix(t_data *data)
 	data->matrix_reflection.values[2][2] = -1;
 }
 
-t_vectr	get_center_of_figure(t_matrix *matrix)
+t_vectr			get_center_of_figure(t_matrix *matrix)
 {
 	int		i;
 	t_vectr	result;
@@ -58,7 +73,7 @@ t_vectr	get_center_of_figure(t_matrix *matrix)
 	return (result);
 }
 
-float	get_distance_z(t_data *data)
+float			get_distance_z(t_data *data)
 {
 	float	result;
 
@@ -71,32 +86,30 @@ float	get_distance_z(t_data *data)
 	return (result);
 }
 
-t_vectr	get_distance(t_data *data)
+t_vectr			get_distance(t_data *data)
 {
-	t_vectr min;
-	t_vectr	max;
-	int i;
+	t_vectr	m[2];
+	int		i;
 
 	i = -1;
-	ft_bzero(&min, sizeof(t_vectr));
-	ft_bzero(&max, sizeof(t_vectr));
+	ft_bzero(&m, sizeof(t_vectr) * 2);
 	while (++i < data->cord.rows)
 	{
-		if (max.x < data->cord.values[i][0])
-			max.x = data->cord.values[i][0];
-		if (min.x > data->cord.values[i][0])
-			min.x = data->cord.values[i][0];
-		if (max.y < data->cord.values[i][1])
-			max.y = data->cord.values[i][1];
-		if (min.y > data->cord.values[i][1])
-			min.y = data->cord.values[i][1];
-		if (max.z < data->cord.values[i][2])
-			max.z = data->cord.values[i][2];
-		if (min.z > data->cord.values[i][2])
-			min.z = data->cord.values[i][2];
+		if (m[0].x < data->cord.values[i][0])
+			m[0].x = data->cord.values[i][0];
+		if (m[1].x > data->cord.values[i][0])
+			m[1].x = data->cord.values[i][0];
+		if (m[0].y < data->cord.values[i][1])
+			m[0].y = data->cord.values[i][1];
+		if (m[1].y > data->cord.values[i][1])
+			m[1].y = data->cord.values[i][1];
+		if (m[0].z < data->cord.values[i][2])
+			m[0].z = data->cord.values[i][2];
+		if (m[1].z > data->cord.values[i][2])
+			m[1].z = data->cord.values[i][2];
 	}
-	max.x = (max.x + 1) - min.x;
-	max.y = (max.y + 1) - min.y;
-	max.z -= min.z;
-	return (max);
+	m[0].x = (m[0].x + 1) - m[1].x;
+	m[0].y = (m[0].y + 1) - m[1].y;
+	m[0].z -= m[1].z;
+	return (m[0]);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:30:06 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:30:08 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
 void	transform_figure(t_data *data)
@@ -23,7 +35,7 @@ void	transform_figure(t_data *data)
 	data->result.values = temp.values;
 }
 
-int expose_hook(t_data *data)
+int		expose_hook(t_data *data)
 {
 	mlx_clear_window(data->mlx_ptr, data->win);
 	transform_figure(data);
@@ -31,7 +43,7 @@ int expose_hook(t_data *data)
 	return (0);
 }
 
-int key_hook(int key, void *param)
+int		key_hook(int key, void *param)
 {
 	if (key == ESC)
 		exit(1);
@@ -49,7 +61,7 @@ int key_hook(int key, void *param)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_data data;
 
@@ -59,7 +71,7 @@ int main(int argc, char **argv)
 	read_data(&data, &argv[1]);
 	if (!(data.mlx_ptr = mlx_init()))
 		ft_error("Fails to set up the connection!");
-	data.win = mlx_new_window (data.mlx_ptr, SIZE_X, SIZE_Y, "FdF by ddryha.");
+	data.win = mlx_new_window(data.mlx_ptr, SIZE_X, SIZE_Y, "FdF by ddryha.");
 	data.dist = get_distance(&data);
 	create_transformation_matrix(&data);
 	init_matrix(&data);

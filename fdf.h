@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 10:49:00 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 10:49:06 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -5,6 +17,7 @@
 # include <math.h>
 # include "libft/includes/libft.h"
 # include "libft/includes/ft_printf.h"
+# include <stdio.h>
 
 # define SIZE	4
 # define SIZE_X 1024
@@ -46,14 +59,14 @@
 # define COLOR1(x) x == ONE || x == TWO || x == THREE ? 1 : 0
 # define COLOR2(x) x == FOUR || x == FIVE ? 1 : 0
 
-typedef	struct s_color
+typedef	struct	s_color
 {
 	int r;
 	int g;
 	int b;
 }				t_color;
 
-typedef struct s_vectr
+typedef struct	s_vectr
 {
 	float		x;
 	float		y;
@@ -62,22 +75,22 @@ typedef struct s_vectr
 	int			color;
 }				t_vectr;
 
-typedef	struct s_matrix
+typedef	struct	s_matrix
 {
 	float		**values;
 	int			rows;
 }				t_matrix;
 
-typedef	struct s_camera
+typedef	struct	s_camera
 {
-	t_vectr 	pos;
-	t_vectr 	target;
-	t_vectr 	direction;
-	t_vectr 	right;
-	t_vectr 	up;
+	t_vectr		pos;
+	t_vectr		target;
+	t_vectr		direction;
+	t_vectr		right;
+	t_vectr		up;
 }				t_camera;
 
-typedef	struct s_proj
+typedef	struct	s_proj
 {
 	float		near;
 	float		far;
@@ -89,8 +102,7 @@ typedef	struct s_proj
 	float		bottom;
 }				t_proj;
 
-
-typedef struct s_bres
+typedef struct	s_bres
 {
 	int			x;
 	int			y;
@@ -131,37 +143,37 @@ typedef struct	s_data
 	int			y;
 }				t_data;
 
-void	read_data(t_data *data, char **argv);
-void	ft_error(char *str);
-int		ft_atoi_base(char *str, int base);
-void	del_content(void *content, size_t size);
-void	draw_map(t_data *data);
-t_vectr	matrix_subtraction(t_vectr v1, t_vectr v2);
-float	**matrix_multiplication(t_matrix m1, t_matrix m2);
-float	**create_matrix(int size);
-t_vectr cross(t_vectr v1, t_vectr v2);
-t_vectr	normilize_vector(t_vectr v);
-void	init_matrix(t_data *data);
-void	normilize_cord(t_matrix matrix, t_matrix temp);
-void	free_matrix(t_matrix matrix);
-void	unit_matrix(t_matrix *matrix);
-void	create_transformation_matrix(t_data *data);
-void	init_matrix_model(t_data *data);
-void	reset_matrix(t_matrix *matrix);
-void	rotate(t_data *data, int key);
-void	change_color(t_data *data, int key);
-int		make_gradient(int color, t_color step);
-t_color	get_rgb_step(int color1, int color2, int length);
-void	draw_line(t_data *data, int index1, int index2);
-void	move(t_data *data, int key);
-void	scale(t_data *data, int key);
-float	get_distance_z(t_data *data);
-t_vectr	get_center_of_figure(t_matrix *matrix);
-void	to_world(t_data *data);
-t_vectr	get_distance(t_data *data);
-void	reset_cord(t_data *data);
-void	draw_vertical(t_data *data);
-void	draw_horizontal(t_data *data);
-int		check_cords(t_matrix matrix, int index);
+void			read_data(t_data *data, char **argv);
+void			ft_error(char *str);
+int				ft_atoi_base(char *str, int base);
+void			del_content(void *content, size_t size);
+void			draw_map(t_data *data);
+t_vectr			matrix_subtraction(t_vectr v1, t_vectr v2);
+float			**matrix_multiplication(t_matrix m1, t_matrix m2);
+float			**create_matrix(int size);
+t_vectr			cross(t_vectr v1, t_vectr v2);
+t_vectr			normilize_vector(t_vectr v);
+void			init_matrix(t_data *data);
+void			normilize_cord(t_matrix matrix, t_matrix temp);
+void			free_matrix(t_matrix matrix);
+void			unit_matrix(t_matrix *matrix);
+void			create_transformation_matrix(t_data *data);
+void			init_matrix_model(t_data *data);
+void			reset_matrix(t_matrix *matrix);
+void			rotate(t_data *data, int key);
+void			change_color(t_data *data, int key);
+int				make_gradient(int color, t_color step);
+t_color			get_rgb_step(int color1, int color2, int length);
+void			draw_line(t_data *data, int index1, int index2);
+void			move(t_data *data, int key);
+void			scale(t_data *data, int key);
+float			get_distance_z(t_data *data);
+t_vectr			get_center_of_figure(t_matrix *matrix);
+void			to_world(t_data *data);
+t_vectr			get_distance(t_data *data);
+void			reset_cord(t_data *data);
+void			draw_vertical(t_data *data);
+void			draw_horizontal(t_data *data);
+int				check_cords(t_matrix matrix, int index);
 
 #endif

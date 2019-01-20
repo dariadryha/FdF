@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:29:21 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:29:23 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
 
-int		check_cords(t_matrix matrix, int index)
+int				check_cords(t_matrix matrix, int index)
 {
 	if (matrix.values[index][0] > 1 || matrix.values[index][0] < -1)
 		return (0);
@@ -13,14 +25,22 @@ int		check_cords(t_matrix matrix, int index)
 
 static	void	print_usage(t_data *data)
 {
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 10, 0xFFFFFF, "Change color: 1 - 5");
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 50, 0xFFFFFF, "Rotation about X: W, S");
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 70, 0xFFFFFF, "Rotation about Y: A, D");
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 90, 0xFFFFFF, "Rotation about Z: Q, E");
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 130, 0xFFFFFF, "Scaling Z: O, L");
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 170, 0xFFFFFF, "Move: arrows");
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 210, 0xFFFFFF, "Zoom: +, -");
-	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 250, 0xFFFFFF, "Reset changes: space");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 10,
+		0xFFFFFF, "Change color: 1 - 5");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 50,
+		0xFFFFFF, "Rotation about X: W, S");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 70,
+		0xFFFFFF, "Rotation about Y: A, D");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 90,
+		0xFFFFFF, "Rotation about Z: Q, E");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 130,
+		0xFFFFFF, "Scaling Z: O, L");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 170,
+		0xFFFFFF, "Move: arrows");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 210,
+		0xFFFFFF, "Zoom: +, -");
+	mlx_string_put(data->mlx_ptr, data->win, PAD_L, 250,
+		0xFFFFFF, "Reset changes: space");
 }
 
 void			draw_map(t_data *data)

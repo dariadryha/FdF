@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ddryha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/20 11:30:51 by ddryha            #+#    #+#             */
+/*   Updated: 2019/01/20 11:30:53 by ddryha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fdf.h"
+
+#define TO_F (float)((t_vectr *)(temp->content))
 
 static	void	parse_color(char *str, t_vectr *vec)
 {
@@ -25,13 +39,13 @@ static	void	parse_arguments(t_data *data, t_list *head)
 	while (++i < data->cord.rows)
 	{
 		data->color[i] = (int *)malloc(sizeof(int));
-		data->cord.values[i][0] = (float)((t_vectr *)(temp->content))->x;
-		data->cord.values[i][1] = (float)((t_vectr *)(temp->content))->y;
-		data->cord.values[i][2] = (float)((t_vectr *)(temp->content))->z;
+		data->cord.values[i][0] = TO_F->x;
+		data->cord.values[i][1] = TO_F->y;
+		data->cord.values[i][2] = TO_F->z;
 		data->cord.values[i][3] = 1;
-		data->default_cord.values[i][0] = (float)((t_vectr *)(temp->content))->x;
-		data->default_cord.values[i][1] = (float)((t_vectr *)(temp->content))->y;
-		data->default_cord.values[i][2] = (float)((t_vectr *)(temp->content))->z;
+		data->default_cord.values[i][0] = TO_F->x;
+		data->default_cord.values[i][1] = TO_F->y;
+		data->default_cord.values[i][2] = TO_F->z;
 		data->color[i][0] = (int)((t_vectr *)(temp->content))->color;
 		data->default_cord.values[i][3] = 1;
 		temp = temp->next;
@@ -57,10 +71,10 @@ static	void	parse_cord(t_vectr *vec, t_list **head, char *line)
 	ft_del_mas_str(arr);
 }
 
-void	read_data(t_data *data, char **argv)
+void			read_data(t_data *data, char **argv)
 {
 	int		fd;
-	int 	i;
+	int		i;
 	char	*line;
 	t_list	*head;
 	t_vectr vec;
