@@ -15,11 +15,13 @@ Each number corresponds to a point in space: <br>
 
 
 
+***
 Usage :<br>
 `./fdf <filename>`
 
 
 
+***
 Result examples:
 
 
