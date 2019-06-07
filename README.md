@@ -11,5 +11,5 @@ Each number corresponds to a point in space:
 • The horizontal position corresponds to its axis. • The vertical position corresponds to its ordinate. • The value corresponds to its altitude.
 
 
-Usage : →→
+Usage :<br>
 `./fdf <filename>`
