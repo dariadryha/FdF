@@ -18,6 +18,8 @@ Usage :<br>
 `./fdf <filename>`
 
 Result examples: <br>
+<br>
+<br>
 ![example_map](/images/01_42_map.png)
  <br>
 ![example_map](/images/02_pyramide_map.png)
